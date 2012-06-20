@@ -1,0 +1,14 @@
+<modification>
+<id>Remove last comma</id>
+<version>1.0</version>
+<vqmver>1.1.0</vqmver>
+<author>ovife21</author>
+
+<file name="catalog/view/theme/default/template/product/product.tpl">
+<operation>
+<search position="replace"><![CDATA[<a href="<?php echo $tag['href']; ?>"><?php echo $tag['tag']; ?></a>,]]></search>
+<add><![CDATA[<a href="<?php echo $tag['href']; ?>"><?php echo $tag['tag']; ?></a><?php if (($tags[(count($tags)-1)]['tag']) != $tag['tag']) echo',';?>]]></add>
+</operation>
+</file>
+
+</modification>

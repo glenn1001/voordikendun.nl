@@ -1,0 +1,48 @@
+<modification>
+
+	<id>Friendly URLs</id>
+	<version>1.0.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>ovife21</author>
+	
+	<file name="catalog/controller/common/seo_url.php">
+		<operation>
+			<search position="after"><![CDATA[$parts = explode('/', $this->request->get['_route_']);]]></search>
+			<add><![CDATA[$route = "";]]></add>
+		</operation>		
+		<operation>
+			<search position="after"><![CDATA[$url = explode('=', $query->row['query']);]]></search>
+			<add><![CDATA[
+			if(count($url) > 1){       ]]></add>
+		</operation>		
+		<operation>
+			<search position="after"><![CDATA[$this->request->get['information_id'] = $url[1];]]></search>
+			<add><![CDATA[}
+			               }else{
+						                     $route = $url[0];]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$this->request->get['route'] = 'information/information';]]></search>
+			<add><![CDATA[         }else {$this->request->get['route'] = $route;]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[if (isset($data['route'])) {]]></search>
+			<add><![CDATA[if (($key == 'product_id') || ($key == 'manufacturer_id') || ($key == 'information_id')) {]]></add>
+		</operation>	
+		<operation>
+			<search position="replace"><![CDATA[if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/product' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation>
+			<search position="after" index="2"><![CDATA[unset($data[$key]);]]></search>
+			<add><![CDATA[}elseif ($key == 'route') {
+               $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $this->db->escape($value) . "'");
+            
+               if ($query->num_rows) {
+                  $url .= '/' . $query->row['keyword'];
+                  
+                  unset($data[$key]);]]></add>
+		</operation>		
+	</file>
+</modification>
+
