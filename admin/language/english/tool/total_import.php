@@ -73,6 +73,7 @@ $_['entry_reset'] 					= 'Empty store before import:';
 $_['text_field_oc_title']	 		= 'OpenCart Field';
 $_['text_field_feed_title']	 		= 'Feed Field';
 $_['text_field_name']     			= 'Name';
+$_['text_field_redirect']     			= 'Redirect';
 $_['text_field_price']     			= 'Price';
 $_['text_field_special_price']     	= 'Special Price';
 $_['text_field_model']    	 		= 'Model';

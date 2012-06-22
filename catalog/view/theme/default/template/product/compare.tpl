@@ -112,7 +112,7 @@
     <tr>
       <td></td>
       <?php foreach ($products as $product) { ?>
-      <td><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" /></td>
+      <td><input type="button" value="<?php echo $button_cart; ?>" onclick="redirect('<?php echo $product['product_id']; ?>');" class="button" /></td>
       <?php } ?>
     </tr>
     <tr>

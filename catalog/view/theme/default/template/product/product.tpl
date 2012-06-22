@@ -205,7 +205,7 @@
         <div><?php echo $text_qty; ?>
           <input type="text" name="quantity" size="2" value="<?php echo $minimum; ?>" />
           <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
-          &nbsp;<input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
+          &nbsp;<input type="button" value="<?php echo $button_cart; ?>" onclick="redirect('<?php echo $product_id; ?>');" id="button-cart" class="button" />
           </div>
         <div><span>&nbsp;&nbsp;&nbsp;<?php echo $text_or; ?>&nbsp;&nbsp;&nbsp;</span></div>
         <div><a onclick="addToWishList('<?php echo $product_id; ?>');"><?php echo $button_wishlist; ?></a><br />
@@ -314,7 +314,7 @@
         <?php if ($product['rating']) { ?>
         <div class="rating"><img src="catalog/view/theme/default/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
         <?php } ?>
-        <a onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a></div>
+        <a onclick="redirect('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a></div>
       <?php } ?>
     </div>
   </div>
@@ -334,7 +334,7 @@ $('.colorbox').colorbox({
 });
 //--></script> 
 <script type="text/javascript"><!--
-$('#button-cart').bind('click', function() {
+/*$('#button-cart').bind('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/cart/add',
 		type: 'post',
@@ -362,7 +362,7 @@ $('#button-cart').bind('click', function() {
 			}	
 		}
 	});
-});
+});*/
 //--></script>
 <?php if ($options) { ?>
 <script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.js"></script>
